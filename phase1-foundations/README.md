@@ -139,7 +139,16 @@ Measures how similar two embedding vectors are by computing the cosine of the an
   - `1.0` — identical direction (very similar meaning)
   - `0.0` — perpendicular (unrelated)
   - `-1.0` — opposite direction (opposing meaning)
-- **Implementation:** dot product divided by the product of each vector's magnitude.
+- **Implementation:** dot product divided by the product of each vector's magnitude. The dot product of two vectors is: multiply each pair of corresponding numbers, then sum them all up. That gives you a single number. But that number is influenced by two things simultaneously — the angle between the vectors AND the length of each vector.
+Imagine two chunks in your knowledge base:
+
+Chunk A is a one-line summary: "Data mesh decentralises data ownership."
+Chunk B is a 500-word article section covering the same idea in depth.
+
+Both are about the same topic. Their vectors point in roughly the same direction. But Chunk B's vector is much longer — it has more content, so the raw numbers in the vector are larger overall.
+If you just returned the dot product, Chunk B would score higher than Chunk A for almost every query — not because it's more relevant, but simply because it's longer. Length would dominate the relevance signal.
+Dividing by the magnitudes cancels out the length. What remains is purely the angle between the two vectors — which is only about directional similarity, i.e. meaning. A short chunk and a long chunk about the same topic end up with a cosine similarity close to 1.0. A long chunk about a completely different topic scores low.
+That's why it's called cosine similarity — because geometrically, dot_product / (magnitude_a × magnitude_b) is exactly the formula for the cosine of the angle between two vectors. And cosine only depends on angle, never on length.
 - **Why it matters:** this is the scoring function for retrieval. Higher scores mean the document is more relevant to the query.
 
 ---
