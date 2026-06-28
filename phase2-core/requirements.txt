@@ -1,0 +1,4 @@
+python-dotenv==1.0.1
+numpy==2.2.6
+requests==2.32.3
+pinecone==5.4.2
