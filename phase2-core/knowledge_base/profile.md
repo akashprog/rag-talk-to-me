@@ -122,7 +122,6 @@ taking on responsibility for a small team of architects.
 
 ## My writing — Perspica
 
-Perspica is Akash Jain's professional blog and writing platform.
 Perspica is Akash's professional blog where he writes about data and AI 
 from a practitioner's perspective. The focus is on real-world architecture, 
 enterprise transformation, and emerging paradigms in data engineering and 
